@@ -1,6 +1,5 @@
-import { Document, Schema, model } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
-import { v4 as uuid } from 'uuid';
 
 /**
  * MONGOOSE USER INTERFACE
@@ -17,11 +16,6 @@ export interface IUser extends Document {
  */
 export const UserSchema: Schema<IUser> = new Schema(
   {
-    id: {
-      type: String,
-      required: true,
-      default: () => uuid(),
-    },
     firstname: {
       type: String,
       required: true,
@@ -49,4 +43,4 @@ UserSchema.plugin(uniqueValidator);
 /**
  * MOONGOSE USER MODEL
  */
-export const UserModel = model('User', UserSchema);
+export default mongoose.model<IUser>('User', UserSchema);

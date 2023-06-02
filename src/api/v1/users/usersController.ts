@@ -34,7 +34,7 @@ export class UsersController extends Controller {
       email: string;
       admin: boolean;
     },
-  ): Promise<void> {
+  ): Promise<IUser> {
     this.setStatus(201); // set return status 201
     return this.usersService.create(requestBody);
   }

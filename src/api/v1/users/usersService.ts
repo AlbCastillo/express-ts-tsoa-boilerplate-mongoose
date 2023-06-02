@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import { singleton } from 'tsyringe';
 
-import { IUser, UserModel } from './user';
+import userModel, { IUser } from './user';
 import logger from '../../../logging/winstonLogger';
 import { ApiError } from '../../../middlewares/apiErrors';
 
@@ -15,7 +15,7 @@ export class UsersService {
   async get(userId: string): Promise<IUser> {
     try {
       logger.info(`getting User with id: ${userId}`);
-      const user = await UserModel.findOne({ id: userId });
+      const user = await userModel.findOne({ _id: userId });
       if (user) {
         return user;
       }
@@ -39,7 +39,7 @@ export class UsersService {
 
   async getAll(): Promise<IUser[]> {
     try {
-      const users = await UserModel.find();
+      const users = await userModel.find();
       return users;
     } catch (error: any) {
       throw new ApiError({
@@ -60,10 +60,10 @@ export class UsersService {
     lastname: string;
     email: string;
     admin: boolean;
-  }): Promise<void> {
+  }): Promise<IUser> {
     try {
       logger.info(`Creating a new User`);
-      await UserModel.create(user);
+      return userModel.create(user);
     } catch (error: any) {
       logger.error(`Error creating User ${error.message}`);
       throw new ApiError({

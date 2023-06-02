@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import { serializeError } from 'serialize-error';
 import { ValidateError } from 'tsoa';
 
 /**
@@ -33,21 +32,21 @@ export function errorAPIHandler(
     return res.status(err.statusCode).json({
       name: err.name,
       statusCode: err.statusCode,
-      message: serializeError(err),
+      message: err.message,
     });
   }
   if (err instanceof ValidateError) {
     return res.status(422).json({
       name: 'ValidationError',
       statusCode: 422,
-      message: serializeError(err),
+      message: err.message,
     });
   }
   if (err instanceof Error) {
     return res.status(500).json({
       name: 'InternalServerError',
       statusCode: 500,
-      message: serializeError(err),
+      message: err.message,
     });
   }
   next();

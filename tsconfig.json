@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "ES2020",
     "module": "commonjs",
     "moduleResolution": "node",
-    "allowJs": false,
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
     "declaration": true,
-		"preserveConstEnums": true,
+    "preserveConstEnums": true,
     "declarationMap": false,
     "resolveJsonModule": true,
     "esModuleInterop": true,
@@ -17,9 +17,9 @@
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
     "isolatedModules": true,
-		"rootDirs": ["src/","tests/"],
+    "rootDirs": ["src/", "tests/"],
     "outDir": "build/"
   },
-"include": ["./src/**/*","./tests/**/*"],
+  "include": ["./src/**/*", "./tests/**/*"],
   "exclude": ["node_modules", "dist"]
 }

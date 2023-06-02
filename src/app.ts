@@ -55,12 +55,9 @@ app.use(morganMiddlewareLogger);
 app.use(helmet());
 
 // SWAGGER DOCUMENTATION
-app.use(
-  '/docs',
-  swaggerUi.serveWithOptions({
-    redirect: false,
-  }),
-);
+app.use('/docs', swaggerUi.serve, async (_req: Request, res: Response) => {
+  return res.send(swaggerUi.generateHTML(await import('./swagger.json')));
+});
 swaggerUi.setup(swaggerJSON);
 
 // export default server;
