@@ -1,0 +1,20 @@
+{
+    "extends": "@tsconfig/node14/tsconfig.json",
+    "ts-node":{
+        "transpileOnly": true,
+        "files":true,
+    },
+    "compilerOptions": {
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "preserveConstEnums": true,
+        "resolveJsonModule": true,
+        "rootDirs": ["src/","tests/"],
+        "outDir": "build/",
+    },
+    
+    "include": [
+        "./src/**/*",
+        "./tests/**/*"
+    ],
+}
