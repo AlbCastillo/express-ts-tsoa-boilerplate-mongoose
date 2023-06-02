@@ -23,7 +23,6 @@ export class ApiError extends Error {
   }
 }
 
-// eslint-disable-next-line consistent-return
 export function errorAPIHandler(
   err: unknown,
   req: Request,
