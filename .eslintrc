@@ -12,19 +12,85 @@
     "files": "*.ts",
     "project": "./tsconfig.json"
   },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      }
+    }
+  },
   "env": {
     "jest/globals": true
   },
-  "rules": {
-    "prettier/prettier": "warn",
-    "import/prefer-default-export": 0,
-    "class-methods-use-this": ["error", { "exceptMethods": ["get", "create"] }],
-    "linebreak-style": ["error", "unix"],
-    "jest/no-disabled-tests": "warn",
-    "jest/no-focused-tests": "error",
-    "jest/no-identical-title": "error",
-    "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error"
-  },
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      "rules": {
+        "no-unused-vars": "off",
+        "linebreak-style": "off",
+        "prettier/prettier": [
+          "error",
+          {
+            "endOfLine": "auto"
+          }
+        ],
+        "no-console": ["warn", { "allow": ["warn", "error"] }],
+        "import/namespace": "off",
+        "import/order": [
+          "warn",
+          {
+            "groups": ["builtin", "external", "internal"],
+            "pathGroups": [
+              {
+                "pattern": "~/**",
+                "group": "internal"
+              }
+            ],
+            "newlines-between": "always",
+            "alphabetize": {
+              "order": "asc",
+              "caseInsensitive": true
+            }
+          }
+        ],
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+          "error",
+          {
+            "vars": "all",
+            "varsIgnorePattern": "^_",
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
+        "@typescript-eslint/no-shadow": ["error"],
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "variable",
+            "format": ["PascalCase", "camelCase", "UPPER_CASE"],
+            "leadingUnderscore": "allow",
+            "trailingUnderscore": "allow"
+          }
+        ],
+        "no-shadow": "off",
+        "no-undef": "off"
+      }
+    }
+  ],
   "ignorePatterns": ["plopfile.ts", "jest.config.js"]
 }
