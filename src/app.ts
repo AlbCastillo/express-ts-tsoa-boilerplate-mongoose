@@ -15,7 +15,7 @@ import logger from './logging/winstonLogger';
 import { errorAPIHandler } from './middlewares/apiErrors';
 import morganMiddlewareLogger from './middlewares/morganLogger';
 import swaggerJSON from './swagger.json';
-// import { RegisterRoutes } from './tsoa_generated/routes';
+import { RegisterRoutes } from './tsoa_generated/routes';
 
 const app: Application = express();
 
@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 /**
  * REGISTER ROUTES FROM TSOA
  */
-// RegisterRoutes(app);
+RegisterRoutes(app);
 
 /**
  * MIDDLEWARES

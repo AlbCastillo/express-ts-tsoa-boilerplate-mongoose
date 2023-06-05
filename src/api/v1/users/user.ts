@@ -1,5 +1,4 @@
 import mongoose, { Document, Schema } from 'mongoose';
-import uniqueValidator from 'mongoose-unique-validator';
 
 /**
  * MONGOOSE USER INTERFACE
@@ -38,7 +37,6 @@ export const UserSchema: Schema<IUser> = new Schema(
     timestamps: true,
   },
 );
-UserSchema.plugin(uniqueValidator);
 
 /**
  * MOONGOSE USER MODEL
