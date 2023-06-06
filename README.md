@@ -5,12 +5,7 @@ This is a boilerplate for quickly building RESTful APIs using Node.js, Express, 
 This template comes with many features as : JWT authentication, unit and integration tests, module generator ( Model, Service, Controller),
 Swagger documentation, dependency injection container, error handler, logging system and others.
 
-
-- [Branch Master](https://github.com/AlbCastillo/express-typescript-tsoa-boilerplate/tree/master): Branch without ODM or ORM
-- [Branch: Mongoose](https://github.com/AlbCastillo/express-typescript-tsoa-boilerplate/tree/mongoose): Branch to use a MongoDB using mongoose as ODM
-- [Branch: Sequelize](https://github.com/AlbCastillo/express-typescript-tsoa-boilerplate/tree/sequelize): Branch to use PostgreSQL using sequelize as ORM
-
-In this branch the boilerplate we will use ***MongoDB*** as database and **Mongoose** as ODM
+In this templat we will use ***MongoDB*** as database and **Mongoose** as ODM
 
 ## Table of Contents
 - [Express TSOA Typescript Boilerplate](#express-tsoa-typescript-boilerplate)
@@ -36,12 +31,12 @@ In this branch the boilerplate we will use ***MongoDB*** as database and **Mongo
 
 - [TSyringe](https://github.com/microsoft/tsyringe): A lightweight dependency injection container for TypeScript/JavaScript for constructor injection.
 
-- [Helmet](https://helmetjs.github.io): Secure Express apps by setting HTTP headers 
-  
+- [Helmet](https://helmetjs.github.io): Secure Express apps by setting HTTP headers
+
 - [Lodash](https://lodash.com): Utility library
 
 - [Mongoose](https://mongoosejs.com): Mongo ODM
-  
+
 - [Swagger UI Express](https://github.com/scottie1984/swagger-ui-express): Documentation generator & hosting
 
 - [ESLint](https://eslint.org/):  Linting and formatting code using
@@ -57,7 +52,7 @@ In this branch the boilerplate we will use ***MongoDB*** as database and **Mongo
 
 - [Jest](https://jestjs.io/): Testing
 
-- [Serialize-error](https://github.com/sindresorhus/serialize-error): Serialize an Error object into a plain object 
+- [Serialize-error](https://github.com/sindresorhus/serialize-error): Serialize an Error object into a plain object
 
 - [Supertest](https://github.com/visionmedia/supertest) : high-level abstraction for testing HTTP
 
@@ -75,17 +70,17 @@ It is recommendable install these dependecies as global:
 ```ts-node```
 ```nodemon```
 ```tsoa```
-1. install the dependencies using yarn:  
+1. install the dependencies using yarn:
 ``` bash
- yarn install
+ yarn
 ```
 2. Rename the file `.env.example` to `.env` (Edit the file if needed).
 
-You can use the command 
+You can use the command
 ```bash
 cp .env.example to .env
 ```
-3. Prepare husky hooks : 
+3. Prepare husky hooks :
 ```bash
 yarn prepare:husky
 ```
@@ -93,7 +88,7 @@ yarn prepare:husky
 ```bash
 yarn build
 ```
-5. Run the application with live reloading 
+5. Run the application with live reloading
 ```bash
 yarn dev
 ```
@@ -114,7 +109,7 @@ Generated files when the command is executed(name & version are prompt's input):
 
 ### Swagger-Documentation
 
-API Documentation is automatically generated and hosted under `/api-doc`
+API Documentation is automatically generated and hosted under `/docs`
 
 To update your API Documentation you must modified the file ```src/swagger.json```
 ### Husyk hook
@@ -127,7 +122,9 @@ Avoid hook : **git commit -m "Your message" --no-verify**
 - `yarn lint` - Lint your TS code,
 - `yarn lint:fix` - Lint and automatically fix your TS code.
 - `yarn dev` - Run the server locally.
-- `yarn clean` - Remove build, tsoa_generated and coverage folders,
+- `yarn clean:routes` - Remove build, tsoa_generated and coverage folders
+- `yarn clean:modules`- Remove node_modules
+- `yarn clean:all`-  Execute yarn clean:modules & yarn clean:routes
 - `yarn test` - Run all tests.
 - `yarn test:unit` - Run unit tests.
 - `yarn test:integration` - Run integration tests.
