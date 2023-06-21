@@ -93,5 +93,5 @@
       }
     }
   ],
-  "ignorePatterns": ["plopfile.ts", "jest.config.js"]
+  "ignorePatterns": ["plopfile.ts", "jest.config.js", "plopfile.js"]
 }
