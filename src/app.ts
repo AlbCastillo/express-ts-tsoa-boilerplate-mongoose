@@ -14,7 +14,6 @@ import * as swaggerUi from 'swagger-ui-express';
 import logger from './logging/winstonLogger';
 import { errorAPIHandler } from './middlewares/apiErrors';
 import morganMiddlewareLogger from './middlewares/morganLogger';
-import swaggerJSON from './swagger.json';
 import { RegisterRoutes } from './tsoa_generated/routes';
 
 const app: Application = express();
@@ -41,6 +40,7 @@ RegisterRoutes(app);
 /**
  * MIDDLEWARES
  */
+
 // CORS
 app.use(cors());
 
@@ -59,7 +59,5 @@ app.use(helmet());
 app.use('/docs', swaggerUi.serve, async (_req: Request, res: Response) => {
   return res.send(swaggerUi.generateHTML(await import('./swagger.json')));
 });
-swaggerUi.setup(swaggerJSON);
 
-// export default server;
 export default app;
