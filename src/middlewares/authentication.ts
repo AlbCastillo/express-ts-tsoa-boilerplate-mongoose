@@ -1,11 +1,11 @@
 import { Request } from 'express';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 
-import { config } from '../config';
+import { CONFIG } from '../config';
 
 // CONFIGURE YOUR TOKEN PAYLOAD
 export function signToken(payload: { userId: string }) {
-  const token = jwt.sign(payload, config.JWT.SECRET, { expiresIn: '2h' });
+  const token = jwt.sign(payload, CONFIG.JWT.SECRET, { expiresIn: '2h' });
 
   return token;
 }
@@ -32,7 +32,7 @@ export function expressAuthentication(
       if (!token) {
         reject(new Error('No token provided'));
       }
-      jwt.verify(token, config.JWT.SECRET, (err: any, decoded: any) => {
+      jwt.verify(token, CONFIG.JWT.SECRET, (err: any, decoded: any) => {
         if (err) {
           reject(err);
         } else {
