@@ -14,6 +14,7 @@ import * as swaggerUi from 'swagger-ui-express';
 import logger from './logging/winston.logger';
 import { errorAPIHandler } from './middlewares/api.errors';
 import morganMiddlewareLogger from './middlewares/morgan.logger';
+import { sanitizeRequest } from './middlewares/sanitizer';
 import { RegisterRoutes } from './tsoa_generated/routes';
 
 const app: Application = express();
@@ -26,6 +27,14 @@ app.use(
 
 app.use(json());
 
+// HELMET
+app.use(helmet());
+
+// SANITIZE: XSS, SQLi ,NoSQLi
+app.use(sanitizeRequest);
+
+// CORS
+app.use(cors());
 app.get('/', (req, res) => {
   logger.info(`GETTING HELLO WORLD`);
   res.status(200).json({ message: 'Hello World!!' });
@@ -37,13 +46,6 @@ app.get('/', (req, res) => {
 
 RegisterRoutes(app);
 
-/**
- * MIDDLEWARES
- */
-
-// CORS
-app.use(cors());
-
 // API ERROR HANDLER
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   errorAPIHandler(err, req, res, next);
@@ -51,9 +53,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 // MORGAN LOGGER
 app.use(morganMiddlewareLogger);
-
-// HELMET
-app.use(helmet());
 
 // SWAGGER DOCUMENTATION
 app.use('/docs', swaggerUi.serve, async (_req: Request, res: Response) => {
