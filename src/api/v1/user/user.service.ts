@@ -1,13 +1,13 @@
 import { singleton } from 'tsyringe';
 
 import { CreateUserDto } from './dto/create-user.dto';
-import userModel from './models/users.model';
-import { UserI } from './models/users.schema';
+import userModel from './models/user.model';
+import { UserI } from './models/user.schema';
 import { ApiError } from '../../../middlewares/apiErrors';
 import { HTTP_ERRORS } from '../../../utils/httpErrors';
 
 @singleton()
-export class UsersService {
+export class UserService {
   async create(user: CreateUserDto): Promise<UserI> {
     try {
       return await userModel.create(user);

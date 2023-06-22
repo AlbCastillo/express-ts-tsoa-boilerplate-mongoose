@@ -2,13 +2,13 @@ import { Route, Controller, Get, Path, Post, SuccessResponse, Body } from 'tsoa'
 import { inject, injectable } from 'tsyringe';
 
 import { CreateUserDto } from './dto/create-user.dto';
-import { UserI } from './models/users.schema';
-import { UsersService } from './users.service';
+import { UserI } from './models/user.schema';
+import { UserService } from './user.service';
 
 @injectable()
 @Route('v1/user')
 export class UserController extends Controller {
-  constructor(@inject(UsersService) private usersService: UsersService) {
+  constructor(@inject(UserService) private usersService: UserService) {
     super();
   }
 
