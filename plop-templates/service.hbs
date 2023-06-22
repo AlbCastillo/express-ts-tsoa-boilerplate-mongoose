@@ -1,7 +1,8 @@
 import { singleton } from 'tsyringe';
-import { {{pascalCase name}}I } from './{{name}}.schema';
-import {{pascalCase name}}Model from './{{name}}.model';
+
 import { Create{{pascalCase name}}Dto } from './dto/create-{{name}}.dto';
+import {{camelCase name}}Model from './models/{{name}}.model';
+import { {{pascalCase name}}I } from './models/{{name}}.schema';
 import { ApiError } from '../../../middlewares/apiErrors';
 import { HTTP_ERRORS } from '../../../utils/httpErrors';
 

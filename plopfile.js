@@ -17,19 +17,30 @@ module.exports = function (plop) {
     actions: [
       {
         type: 'add',
-        path: 'src/api/v{{version}}/{{name}}s/{{name}}.model.ts',
+        path: 'src/api/v{{version}}/{{name}}/dto/create-{{name}}.dto.ts',
+        templateFile: 'plop-templates/create-dto.hbs',
+      },
+      {
+        type: 'add',
+        path: 'src/api/v{{version}}/{{name}}/models/{{name}}.schema.ts',
+        templateFile: 'plop-templates/schema.hbs',
+      },
+      {
+        type: 'add',
+        path: 'src/api/v{{version}}/{{name}}/models/{{name}}.model.ts',
         templateFile: 'plop-templates/model.hbs',
       },
       {
         type: 'add',
-        path: 'src/api/v{{version}}/{{name}}s/{{name}}sService.ts',
+        path: 'src/api/v{{version}}/{{name}}/{{name}}.service.ts',
         templateFile: 'plop-templates/service.hbs',
       },
       {
         type: 'add',
-        path: 'src/api/v{{version}}/{{name}}s/{{name}}sController.ts',
+        path: 'src/api/v{{version}}/{{name}}/{{name}}.controller.ts',
         templateFile: 'plop-templates/controller.hbs',
       },
     ],
   });
 }
+// src/api/v1/users/models

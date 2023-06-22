@@ -1,8 +1,9 @@
 import { Route, Controller, Get, Path, Post, SuccessResponse, Body } from 'tsoa';
 import { inject, injectable } from 'tsyringe';
-import { {{pascalCase name}}I } from './{{name}}.schema';
+
+import { Create{{pascalCase name}}Dto } from './dto/create-{{name}}.dto';
+import { {{pascalCase name}}I } from './models/{{name}}.schema';
 import { {{pascalCase name}}Service } from './{{name}}.service';
-import { CreateUserDto } from './dto/create-{{name}}.dto';
 
 @injectable()
 @Route('v1/{{camelCase name}}')
