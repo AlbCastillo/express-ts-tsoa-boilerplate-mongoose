@@ -3,8 +3,8 @@ import { singleton } from 'tsyringe';
 import { CreateUserDto } from './dto/create-user.dto';
 import userModel from './models/user.model';
 import { UserI } from './models/user.schema';
-import { ApiError } from '../../../middlewares/apiErrors';
-import { HTTP_ERRORS } from '../../../utils/httpErrors';
+import { ApiError } from '../../../middlewares/api.errors';
+import { HTTP_ERRORS } from '../../../utils/http.errors';
 
 @singleton()
 export class UserService {

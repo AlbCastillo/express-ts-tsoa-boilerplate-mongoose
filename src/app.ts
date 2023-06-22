@@ -11,9 +11,9 @@ import express, {
 import helmet from 'helmet';
 import * as swaggerUi from 'swagger-ui-express';
 
-import logger from './logging/winstonLogger';
-import { errorAPIHandler } from './middlewares/apiErrors';
-import morganMiddlewareLogger from './middlewares/morganLogger';
+import logger from './logging/winston.logger';
+import { errorAPIHandler } from './middlewares/api.errors';
+import morganMiddlewareLogger from './middlewares/morgan.logger';
 import { RegisterRoutes } from './tsoa_generated/routes';
 
 const app: Application = express();

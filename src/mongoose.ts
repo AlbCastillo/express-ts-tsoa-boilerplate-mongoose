@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 
 import { CONFIG } from './config';
-import logger from './logging/winstonLogger';
+import logger from './logging/winston.logger';
 
 /**
  * This function connects to a MongoDB database using a URI and returns the connection object.

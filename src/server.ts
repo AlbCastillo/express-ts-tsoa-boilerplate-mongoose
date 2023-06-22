@@ -1,6 +1,6 @@
 import app from './app';
 import { CONFIG } from './config';
-import logger from './logging/winstonLogger';
+import logger from './logging/winston.logger';
 import { connectMongoDB } from './mongoose';
 
 const port = CONFIG.API.PORT;
