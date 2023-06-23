@@ -19,18 +19,21 @@ import { RegisterRoutes } from './tsoa_generated/routes';
 
 const app: Application = express();
 
+// ADJUST IT TO YOUR NEEDS
 app.use(
   urlencoded({
+    limit: '100kb',
     extended: true,
   }),
 );
 
-app.use(json());
+// ADJUST IT TO YOUR NEEDS
+app.use(json({ limit: '100kb' }));
 
 // HELMET
 app.use(helmet());
 
-// SANITIZE: XSS, SQLi ,NoSQLi
+// SANITIZE: XSS,NoSQLi
 app.use(sanitizeRequest);
 
 // CORS
@@ -40,10 +43,7 @@ app.get('/', (req, res) => {
   res.status(200).json({ message: 'Hello World!!' });
 });
 
-/**
- * REGISTER ROUTES FROM TSOA
- */
-
+// REGISTER ROUTES
 RegisterRoutes(app);
 
 // API ERROR HANDLER
