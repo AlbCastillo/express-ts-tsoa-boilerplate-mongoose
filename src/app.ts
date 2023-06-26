@@ -8,7 +8,10 @@ import express, {
   urlencoded,
   json,
 } from 'express';
+// eslint-disable-next-line import/no-named-as-default
+import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
+import hpp from 'hpp';
 import * as swaggerUi from 'swagger-ui-express';
 
 import logger from './logging/winston.logger';
@@ -19,7 +22,7 @@ import { RegisterRoutes } from './tsoa_generated/routes';
 
 const app: Application = express();
 
-// ADJUST IT TO YOUR NEEDS
+// LIMIT URL SIZE: ADJUST IT TO YOUR NEEDS
 app.use(
   urlencoded({
     limit: '100kb',
@@ -27,10 +30,10 @@ app.use(
   }),
 );
 
-// ADJUST IT TO YOUR NEEDS
+// LIMIT BODY SIZE: ADJUST IT TO YOUR NEEDS
 app.use(json({ limit: '100kb' }));
 
-// HELMET
+// HELMET: ADJUST IT YOU YOUR NEEDS
 app.use(helmet());
 
 // SANITIZE: XSS,NoSQLi
@@ -38,13 +41,24 @@ app.use(sanitizeRequest);
 
 // CORS
 app.use(cors());
+
+// AVOID HTTP PARAMETER POLLUTION ATTACKS
+app.use(hpp());
+
+// LIMIT REQUEST PER IP: ADJUST IT TO YOUR NEEDS
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 50, // limit requests per windowMs
+  }),
+);
+
+// REGISTER ROUTES
+RegisterRoutes(app);
 app.get('/', (req, res) => {
   logger.info(`GETTING HELLO WORLD`);
   res.status(200).json({ message: 'Hello World!!' });
 });
-
-// REGISTER ROUTES
-RegisterRoutes(app);
 
 // API ERROR HANDLER
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
