@@ -13,10 +13,11 @@ In this branch of the boilerplate, we will use MongoDB as the database and Mongo
   - [Interesting Dependencies](#interesting-dependencies)
   - [Getting Started](#getting-started)
     - [Installation](#installation)
-    - [Build a New Module Using Plop](#build-a-new-module-using-plop)
+    - [Build a New Domain Using Plop](#build-a-new-domain-using-plop)
     - [Swagger Documentation](#swagger-documentation)
     - [Husky Hook](#husky-hook)
     - [Available Scripts](#available-scripts)
+    - [Src files tree](#src-files-tree)
 - [Inspirations](#inspirations)
 - [License](#license)
 
@@ -27,6 +28,9 @@ In this branch of the boilerplate, we will use MongoDB as the database and Mongo
 - [TSOA](https://tsoa-community.github.io/docs/getting-started.html): Clean Architecture Framework with integrated OpenAPI
 - [TSyringe](https://github.com/microsoft/tsyringe): A lightweight dependency injection container for TypeScript/JavaScript for constructor injection
 - [Helmet](https://helmetjs.github.io): Secure Express apps by setting HTTP headers
+- [Xss](https://www.npmjs.com/package/xss): Xss ia module used to filter input from users to prevent XSS attacks
+- [Hpp](https://www.npmjs.com/package/hpp): An Express middleware to protect against HTTP Parameter Pollution attacks
+- [Express-rate-limit](https://www.npmjs.com/package/express-rate-limit): a basic rate-limiting middleware for Express. Use to limit repeated requests to public APIs and/or endpoints such as password reset.
 - [Lodash](https://lodash.com): Utility library
 - [Mongoose](https://mongoosejs.com): MongoDB ODM
 - [Swagger UI Express](https://github.com/scottie1984/swagger-ui-express): Documentation generator and hosting
@@ -86,12 +90,12 @@ yarn dev
 
 After that, go to: `http://localhost:8080`
 
-### Build a New Module Using Plop
+### Build a New Domain Using Plop
 
 Execute the following command:
 
 ```bash
-yarn plop:module
+yarn plop:domain
 ```
 
 Follow the instructions in the terminal.
@@ -134,6 +138,41 @@ This template uses the NodeJS Security Cheat Sheet from OWASP.
 - `yarn test:integration`: Run integration tests.
 - `yarn plop:module`: Generate a new module for the API with a simple CRUD.
 - `yarn prepare:husky`: Prepare Husky hooks.
+
+### SRC files tree
+
+```
+📦src
+ ┣ 📂api
+ ┃ ┗ 📂v1
+ ┃ ┃ ┗ 📂user
+ ┃ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┃ ┗ 📜create-user.dto.ts
+ ┃ ┃ ┃ ┣ 📂models
+ ┃ ┃ ┃ ┃ ┣ 📜user.model.ts
+ ┃ ┃ ┃ ┃ ┗ 📜user.schema.ts
+ ┃ ┃ ┃ ┣ 📜user.controller.ts
+ ┃ ┃ ┃ ┗ 📜user.service.ts
+ ┣ 📂logging
+ ┃ ┗ 📜winston.logger.ts
+ ┣ 📂middlewares
+ ┃ ┣ 📜api.errors.ts
+ ┃ ┣ 📜authentication.ts
+ ┃ ┣ 📜morgan.logger.ts
+ ┃ ┗ 📜sanitizer.ts
+ ┣ 📂tsoa_generated(Generated with command yarn build)
+ ┃ ┣ 📜routes.ts
+ ┃ ┗ 📜swagger.json
+ ┣ 📂utils
+ ┃ ┣ 📜http.errors.ts
+ ┃ ┗ 📜sum.ts
+ ┣ 📜app.ts
+ ┣ 📜config.ts
+ ┣ 📜ioc.ts
+ ┣ 📜mongoose.ts
+ ┣ 📜server.ts
+ ┗ 📜swagger.json
+ ```
 
 ## Inspirations
 
