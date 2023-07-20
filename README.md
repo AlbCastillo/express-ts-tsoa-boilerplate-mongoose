@@ -1,4 +1,4 @@
-# Express Typescript TSOA Mongoose Boilerplate
+# Express Typescript TSOA Boilerplate Mongoose
 
 This is a boilerplate for quickly building RESTful APIs using Node.js, Express, TSOA, and Typescript.
 
@@ -8,7 +8,7 @@ In this branch of the boilerplate, we will use MongoDB as the database and Mongo
 
 ## Table of Contents
 
-- [Express Typescript TSOA Mongoose Boilerplate](#express-typescript-tsoa-mongoose-boilerplate)
+- [Express Typescript TSOA Boilerplate Mongoose](#express-typescript-tsoa-boilerplate-mongoose)
   - [Table of Contents](#table-of-contents)
   - [Interesting Dependencies](#interesting-dependencies)
   - [Getting Started](#getting-started)
