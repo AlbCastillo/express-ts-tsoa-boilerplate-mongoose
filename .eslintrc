@@ -30,6 +30,7 @@
     {
       "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
       "rules": {
+				"no-multiple-empty-lines": ["error", { "max": 1 }],
         "no-unused-vars": "off",
         "linebreak-style": "off",
         "prettier/prettier": [
@@ -92,5 +93,5 @@
       }
     }
   ],
-  "ignorePatterns": ["plopfile.ts", "jest.config.js"]
+  "ignorePatterns": ["plopfile.ts", "jest.config.js", "plopfile.js"]
 }

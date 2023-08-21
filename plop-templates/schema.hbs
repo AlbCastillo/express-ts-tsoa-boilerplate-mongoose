@@ -1,0 +1,13 @@
+import { Schema, Document } from 'mongoose';
+
+export interface {{pascalCase name}}I extends Document {
+  name: string;
+}
+
+export const {{pascalCase name}}Schema: Schema<{{pascalCase name}}I> = new Schema<{{pascalCase name}}I>({
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+});
