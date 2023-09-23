@@ -1,12 +1,12 @@
 import request = require('supertest');
 
-import app from '../../src/app';
+import { AppServer } from '../../src/server';
 
 /** IT'S RECOMMENDED CREATE A JEST SETUP FILE
  *  https://rahmanfadhil.com/test-express-with-supertest/
  */
 
-const server = app.listen('5555');
+const server = new AppServer('5555', '12345');
 
 afterAll(done => {
   server.close();

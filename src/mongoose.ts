@@ -4,6 +4,7 @@ import logger from './logging/winston.logger';
 
 export class MongoDBConnection {
   private readonly mongoURI: string;
+  private dbConnection: typeof import('mongoose');
 
   constructor(mongoURI: string) {
     this.mongoURI = `${mongoURI}`;
@@ -13,11 +14,11 @@ export class MongoDBConnection {
    * connection object.
    * @returns a Promise that resolves to a mongoose.Connection object.
    */
-  async connectMongoDB(): Promise<mongoose.Connection> {
+  public async connectMongoDB(): Promise<mongoose.Connection> {
     try {
       // Connect to the MongoDB database using the URI from the configuration
-      const dbConnection = await mongoose.connect(`${this.mongoURI}`);
-      if (dbConnection) {
+      this.dbConnection = await mongoose.connect(`${this.mongoURI}`);
+      if (this.dbConnection) {
         return mongoose.connection;
       }
       throw new Error(`MongoDB Connection error`);
@@ -27,6 +28,11 @@ export class MongoDBConnection {
       throw new Error(error);
     } finally {
       logger.info(`MongoDB connected`);
+    }
+  }
+  public async closeConnection(): Promise<any> {
+    if (this.dbConnection) {
+      this.dbConnection.disconnect();
     }
   }
 }
