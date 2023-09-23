@@ -3,24 +3,18 @@ import { CONFIG } from './config';
 import { MongoDBConnection } from './mongoose';
 
 class Server {
-  private port: string;
+  private mongoConnection: MongoDBConnection;
   private appInstance: App;
 
-  constructor(port: string) {
-    this.port = port;
-    this.appInstance = new App(this.port);
+  constructor(serverPort: string, mongoURI: string) {
+    this.appInstance = new App(serverPort);
+    this.mongoConnection = new MongoDBConnection(mongoURI);
   }
-
-  private connectDatabase(): void {
-    const mongoDatabase = new MongoDBConnection(CONFIG.MONGO.URI, CONFIG.MONGO.URI_TEST);
-    mongoDatabase.connectMongoDB();
-  }
-
   public start(): void {
-    this.connectDatabase();
+    this.mongoConnection.connectMongoDB();
     this.appInstance.listen();
   }
 }
 
-const server = new Server(CONFIG.API.PORT);
+const server = new Server(CONFIG.API.PORT, CONFIG.MONGO.URI);
 server.start();
