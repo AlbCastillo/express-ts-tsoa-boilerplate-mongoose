@@ -1,10 +1,12 @@
+import { Server } from 'http';
+
 import { App } from './app';
-import { CONFIG } from './config';
 import { MongoDBConnection } from './mongoose';
 
-class Server {
+export class AppServer {
   private mongoConnection: MongoDBConnection;
   private appInstance: App;
+  private expressServer: Server;
 
   constructor(serverPort: string, mongoURI: string) {
     this.appInstance = new App(serverPort);
@@ -12,9 +14,10 @@ class Server {
   }
   public start(): void {
     this.mongoConnection.connectMongoDB();
-    this.appInstance.listen();
+    this.expressServer = this.appInstance.listen();
+  }
+  public async close(): Promise<void> {
+    await this.mongoConnection.closeConnection();
+    if (this.expressServer) this.expressServer.close();
   }
 }
-
-const server = new Server(CONFIG.API.PORT, CONFIG.MONGO.URI);
-server.start();
