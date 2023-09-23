@@ -1,20 +1,26 @@
-import app from './app';
+import { App } from './app';
 import { CONFIG } from './config';
-import logger from './logging/winston.logger';
-import { connectMongoDB } from './mongoose';
+import { MongoDBConnection } from './mongoose';
 
-const port = CONFIG.API.PORT;
+class Server {
+  private port: string;
+  private appInstance: App;
 
-/**
- * CONNECT DATABASE
- */
-connectMongoDB();
+  constructor(port: string) {
+    this.port = port;
+    this.appInstance = new App(this.port);
+  }
 
-/**
- * SERVER RUNNING ON
- */
-const server = app.listen(port, () => {
-  logger.debug(`APP LISTENING AT http://localhost:${port}`);
-});
+  private connectDatabase(): void {
+    const mongoDatabase = new MongoDBConnection(CONFIG.MONGO.URI, CONFIG.MONGO.URI_TEST);
+    mongoDatabase.connectMongoDB();
+  }
 
-export default server;
+  public start(): void {
+    this.connectDatabase();
+    this.appInstance.listen();
+  }
+}
+
+const server = new Server(CONFIG.API.PORT);
+server.start();
