@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  mongodb-dev:
+    image: mongo:latest
+    command: mongod --port ${MONGO_PORT}
+    ports:
+      - ${MONGO_PORT}:${MONGO_PORT}
+    volumes:
+      - ./.data/mongo:/data
+    networks:
+      - default
