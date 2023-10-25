@@ -7,7 +7,7 @@ export class MongoDBConnection {
   private dbConnection: typeof import('mongoose');
 
   constructor(mongoURI: string) {
-    this.mongoURI = `${mongoURI}`;
+    this.mongoURI = mongoURI;
   }
   /**
    * The function `connectMongoDB` connects to a MongoDB database using the provided URI and returns the
