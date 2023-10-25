@@ -131,13 +131,16 @@ This template uses the NodeJS Security Cheat Sheet from OWASP.
 - `yarn build`: Build the routes and specs from TSOA and compile TypeScript.
 - `yarn lint`: Lint your TypeScript code.
 - `yarn lint:fix`: Lint and automatically fix your TypeScript code.
-- `yarn dev`: Run the server locally.
+- `yarn dev`: Run the server in dev mode using a database (docker-compose-dev.yml).
 - `yarn clean`: Remove build, tsoa_generated, and coverage folders.
 - `yarn test`: Run all tests.
 - `yarn test:unit`: Run unit tests.
 - `yarn test:integration`: Run integration tests.
 - `yarn plop:module`: Generate a new module for the API with a simple CRUD.
 - `yarn prepare:husky`: Prepare Husky hooks.
+- `yarn dc:build`: Build dockerfile.
+- `yarn dc:up`: Up docker compose services.
+- `yarn dc:down`: Down docker compose services.
 
 ### SRC files tree
 
