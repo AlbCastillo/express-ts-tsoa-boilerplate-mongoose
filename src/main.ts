@@ -1,5 +1,6 @@
 import { CONFIG } from './config';
 import { AppServer } from './server';
 
-const server = new AppServer(CONFIG.API.PORT, CONFIG.MONGO.URI);
+const mongoURI = `mongodb://${CONFIG.MONGO.HOST}:${CONFIG.MONGO.PORT}/${CONFIG.MONGO.NAME}`;
+const server = new AppServer(CONFIG.API.PORT, mongoURI);
 server.start();

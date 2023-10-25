@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:latest
+    command: mongod --port ${MONGO_PORT}
+    ports:
+      - ${MONGO_PORT}:${MONGO_PORT}
+    volumes:
+      - ./.data/mongo:/data
+    networks:
+      - default
+  app:
+    image: express-tsoa-boiler-plate
+    build: .
+    command: yarn run start
+    env_file:
+      - .env
+    ports:
+      - "8089:8089"
+    volumes:
+      - ./:/opt/app
+    networks:
+      - default

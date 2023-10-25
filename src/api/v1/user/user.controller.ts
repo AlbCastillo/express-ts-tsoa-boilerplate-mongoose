@@ -12,6 +12,13 @@ export class UserController extends Controller {
     super();
   }
 
+  @Get('/status')
+  @SuccessResponse('200', 'OK')
+  async healthcheck(): Promise<{ message: string }> {
+    this.setStatus(200);
+    return { message: 'User controller works!' };
+  }
+
   @Get('/get/{userId}')
   @SuccessResponse('200', 'OK')
   async getUser(@Path() userId: string): Promise<UserI> {
