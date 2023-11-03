@@ -2,7 +2,7 @@ FROM node:hydrogen-alpine as dependencies
 
 WORKDIR /opt/app
 
-COPY package.json tsoa.json ./
+COPY package.json tsoa.json yarn.lock ./
 
 RUN yarn install
 
