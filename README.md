@@ -53,15 +53,16 @@ In this branch of the boilerplate, we will use MongoDB as the database and Mongo
 It is recommended to install the following dependencies globally:
 
 ```bash
+pnpm
 ts-node
 nodemon
 tsoa
 ```
 
-Install the project dependencies using yarn:
+Install the project dependencies using pnpm:
 
 ```bash
-yarn install
+pnpm install
 ```
 
 Rename the file `.env.example` to `.env` (Edit the file if needed). You can use the following command:
@@ -73,19 +74,19 @@ cp .env.example .env
 Prepare Husky hooks:
 
 ```bash
-yarn prepare:husky
+pnpm prepare:husky
 ```
 
 Build the TSOA routes:
 
 ```bash
-yarn build
+pnpm build
 ```
 
 Run the application with live reloading:
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 After that, go to: `http://localhost:8080`
@@ -95,7 +96,7 @@ After that, go to: `http://localhost:8080`
 Execute the following command:
 
 ```bash
-yarn plop:domain
+pnpm plop:domain
 ```
 
 Follow the instructions in the terminal.
@@ -118,7 +119,7 @@ Another option is to use the documentation generated with [TSOA](https://tsoa-co
 
 ### Husky Hook
 
-**pre-commit**: Execute the command `yarn lint:fix` before committing.
+**pre-commit**: Execute the command `pnpm lint:fix` before committing.
 
 Avoid the hook using `git commit -m "Your message" --no-verify`.
 
@@ -128,19 +129,19 @@ This template uses the NodeJS Security Cheat Sheet from OWASP.
 
 ### Available Scripts
 
-- `yarn build`: Build the routes and specs from TSOA and compile TypeScript.
-- `yarn lint`: Lint your TypeScript code.
-- `yarn lint:fix`: Lint and automatically fix your TypeScript code.
-- `yarn dev`: Run the server in dev mode using a database (docker-compose-dev.yml).
-- `yarn clean`: Remove build, tsoa_generated, and coverage folders.
-- `yarn test`: Run all tests.
-- `yarn test:unit`: Run unit tests.
-- `yarn test:integration`: Run integration tests.
-- `yarn plop:module`: Generate a new module for the API with a simple CRUD.
-- `yarn prepare:husky`: Prepare Husky hooks.
-- `yarn dc:build`: Build dockerfile.
-- `yarn dc:up`: Up docker compose services.
-- `yarn dc:down`: Down docker compose services.
+- `pnpm build`: Build the routes and specs from TSOA and compile TypeScript.
+- `pnpm lint`: Lint your TypeScript code.
+- `pnpm lint:fix`: Lint and automatically fix your TypeScript code.
+- `pnpm dev`: Run the server in dev mode using a database (docker-compose-dev.yml).
+- `pnpm clean`: Remove build, tsoa_generated, and coverage folders.
+- `pnpm test`: Run all tests.
+- `pnpm test:unit`: Run unit tests.
+- `pnpm test:integration`: Run integration tests.
+- `pnpm plop:module`: Generate a new module for the API with a simple CRUD.
+- `pnpm prepare:husky`: Prepare Husky hooks.
+- `pnpm dc:build`: Build dockerfile.
+- `pnpm dc:up`: Up docker compose services.
+- `pnpm dc:down`: Down docker compose services.
 
 ### SRC files tree
 
@@ -163,7 +164,7 @@ This template uses the NodeJS Security Cheat Sheet from OWASP.
  ┃ ┣ 📜authentication.ts
  ┃ ┣ 📜morgan.logger.ts
  ┃ ┗ 📜sanitizer.ts
- ┣ 📂tsoa_generated(Generated with command yarn build)
+ ┣ 📂tsoa_generated(Generated with command pnpm build)
  ┃ ┣ 📜routes.ts
  ┃ ┗ 📜swagger.json
  ┣ 📂utils

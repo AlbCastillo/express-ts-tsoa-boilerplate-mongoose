@@ -6,19 +6,20 @@
   "scripts": {
     "dev": "concurrently \"docker compose -f docker-compose-dev.yml up\" \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
     "dc:up": "docker compose up -d",
+    "dc:stop": "docker compose stop",
     "dc:build": "docker compose build",
     "start": "node build/src/main.js",
     "clean:routes": "rimraf src/tsoa_generated coverage build tmp",
     "clean:modules": "rimraf node_modules",
-    "clean:all": "yarn clean:modules && yarn clean:routes",
-    "prebuild": "tsoa spec-and-routes && yarn lint:fix ",
+    "clean:all": "pnpm run clean:modules && pnpm clean:routes",
+    "prebuild": "tsoa spec-and-routes && pnpm lint:fix ",
     "build": "tsc -p tsconfig.json ",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "test": "jest --forceExit --detectOpenHandles",
     "test:integration": "jest --watchAll --testPathPattern=tests/integrations --forceExit",
     "test:unit": "jest --watchAll --testPathPattern=tests/units",
-    "prepare:husky": "yarn husky install",
+    "prepare:husky": "pnpm husky install",
     "plop:domain": "plop domain"
   },
   "author": "Alberto Castillo",
@@ -58,8 +59,7 @@
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.1.3",
-    "yarn-audit-fix": "^9.3.12"
+    "typescript": "^5.1.3"
   },
   "dependencies": {
     "@tsoa/runtime": "^5.0.0",
