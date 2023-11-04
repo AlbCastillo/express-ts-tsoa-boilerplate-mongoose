@@ -1,10 +1,16 @@
-FROM node:hydrogen-alpine as dependencies
+FROM node:hydrogen-slim as dependencies
+
+ENV PNPM_HOME="/pnpm"
+
+ENV PATH="$PNPM_HOME:$PATH"
+
+RUN corepack enable
 
 WORKDIR /opt/app
 
-COPY package.json tsoa.json ./
+COPY package.json tsoa.json pnpm-lock.yaml ./
 
-RUN yarn install
+RUN pnpm install
 
 FROM dependencies as builder
 
@@ -12,7 +18,7 @@ WORKDIR /opt/app
 
 COPY ./ ./
 
-RUN yarn build
+RUN pnpm build
 
 FROM builder as runner
 
